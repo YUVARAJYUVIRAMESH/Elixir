@@ -6,10 +6,10 @@
 		<div class="col md-12">
 			<div class="jumbotron p-3">
 				<div class="d-flex justify-content-between align-items-center">
-					<h4 class="mb-0">BOOKS</h4>
+					<h4 class="mb-0">USERS</h4>
 					<button type="button" class="btn btn-success me-5" data-bs-toggle="modal"
 						data-bs-target="#modaladd">
-						Add New Books
+						Add New Users
 					</button>
 
 				</div>
@@ -35,9 +35,7 @@
 					<tr>
 						<th>Id</th>
 						<th>Name</th>
-						<th>ISBN</th>
-						<th>Genre</th>
-						<th>Image</th>
+						<th>Email</th>
 						<th>Action</th>
 					</tr>
 
@@ -46,11 +44,7 @@
 					<tr class="align-middle">
 						<td>{{row.id}}</td>
 						<td>{{row.name}}</td>
-						<td>{{row.isbn}}</td>
-						<td>{{row.genre}}</td>
-						<td><img src="{{row.image_url}}" width="80" height="55" alt="image"></td>
-
-
+						<td>{{row.email}}</td>
 						<td>
 							<a href="" class="btn btn-warning btn-xs" data-bs-toggle="modal"
 								data-bs-target="#modaledit{{row.id}}">Edit</a>
@@ -70,31 +64,20 @@
 									<form action='{{url_for('edit', id=row.id, dab=db)}}' method="POST" enctype="multipart/form-data">
 										<div class="form-group">
 											<label for="name">NAME: </label>
-											<input type="text" class="form-control" name="name" value='{{row.name}}'
+											<input type="text" class="form-control" name="name" value='{{row.username}}'
 												required="True"></input>
 										</div>
 
 										<div class="form-group">
-											<label for="isbn">ISBN: </label>
-											<input type="text" class="form-control" name="isbn" value='{{row.isbn}}'
+											<label for="isbn">EMAIL: </label>
+											<input type="text" class="form-control" name="email" value='{{row.email}}'
 												required="True"></input>
 										</div>
 
 										<div class="form-group">
-											<label for="genre">GENRE: </label>
-											<input type="text" class="form-control" name="genre" value='{{row.genre}}'
+											<label for="isbn">PASSWORD: </label>
+											<input type="text" class="form-control" name="password" value='{{row.password}}'
 												required="True"></input>
-										</div>
-
-<br>
-										<div class="form-group">
-											<label for="image">IMAGE: </label>
-											<input type="file" name="image" accept="image/*">
-										</div>
-<br>										<div class="form-group">
-											<label for="description">DESCRIPTION: </label>
-											<textarea name="description" rows="2"
-												style="width: 100%;">{{row.description}}</textarea>
 										</div>
 <br>
 										<div class="form-group">
@@ -112,7 +95,7 @@
 				</table>
 			</div>
 
-			<!-- ADD Books modal -->
+			<!-- ADD Users modal -->
 			<div class="modal fade" id="modaladd">
 
 				<div class="modal-dialog">
@@ -122,7 +105,7 @@
 <button class="btn btn-close" data-bs-dismiss="modal"></button>
 						</div>
 						<div class="modal-body">
-							<form action='{{url_for("insert", db = "Books")}}' method="POST"
+							<form action='{{url_for("insert", dab = db)}}' method="POST"
 								enctype="multipart/form-data">
 								<div class="form-group">
 									<label for="name">NAME: </label>
@@ -130,27 +113,13 @@
 								</div>
 
 								<div class="form-group">
-									<label for="isbn">ISBN: </label>
-									<input type="text" class="form-control" name="isbn" required="True"></input>
+									<label for="isbn">EMAIL: </label>
+									<input type="text" class="form-control" name="email" required="True"></input>
 								</div>
 
 								<div class="form-group">
-									<label for="genre">GENRE: </label>
-									<input type="text" class="form-control" name="genre" required="True"></input>
-								</div>
-
-								<br>
-								<div class="form-group">
-									<label for="image">IMAGE: </label>
-									<input type="file" name="image" accept="image/*" required>
-								</div>
-
-								<br><br>
-
-
-								<div class="form-group">
-									<label for="description">DESCRIPTION: </label>
-									<textarea name="description" rows="2" style="width: 100%;"></textarea>
+									<label for="isbn">PASSWORD: </label>
+									<input type="text" class="form-control" name="password" required="True"></input>
 								</div>
 
 								<br>
