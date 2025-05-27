@@ -3,6 +3,6 @@
 {% block body %}
 <!-- The value of db should be the same as the html file after the admin in its name. For ex: for "adminBooks.html" the db value should be "Books" -->
 <a href='{{url_for("admin", db = "Books")}}'>BOOKS</a>
-<a href='adminBooks.html'>BOOKS</a>
-<a href='adminBooks.html'>BOOKS</a>
+<a href='{{url_for("admin", db = "Users")}}'>USERS</a>
+<a href='{{url_for("admin", db = "BooksRented")}}'>RENTED BOOKS</a>
 {% endblock %}

@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
+class Users(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(70), nullable=False)
@@ -52,10 +52,10 @@ class BooksRented(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     book = db.relationship('Books')
-    user = db.relationship('User')
+    user = db.relationship('Users')
 
     def __init__(self, book_id, user_id, created_at=None):
 
@@ -73,42 +73,60 @@ def home():
 
 @app.route("/adminn")
 def admin():
-    db = request.args.get("db")
-    if db:
-        if (db == "Books"):
+    dab = request.args.get("db")
+    if dab:
+        if (dab == "Books"):
             data = Books.query.all()
-        return render_template(f"admin{db}.html", data=data, db="Books")
+        elif (dab == "Users"):
+            data = Users.query.all()
+        elif (dab == "BooksRented"):
+            data = BooksRented.query.all()
+
+        return render_template(f"admin{dab}.html", data=data, db=dab)
 
     return render_template("admin.html")
 
 
 @app.route("/insert", methods=["POST"])
 def insert():
-    dab = request.args.get("db")
-    name = request.form["name"]
-    isbn = request.form["isbn"]
-    genre = request.form["genre"]
-    image = request.files["image"]
-    description = request.form["description"]
-
-    image_path = imagePathCoder(image)
-
-    image.save(image_path)
+    dab = request.args.get("dab")
+    print(dab)
 
     if (dab == "Books"):
 
+        name = request.form["name"]
+        isbn = request.form["isbn"]
+        genre = request.form["genre"]
+        image = request.files["image"]
+        description = request.form["description"]
+
+        image_path = imagePathCoder(image)
+
+        image.save(image_path)
         new_book = Books(name, isbn, genre, image_path, description)
         db.session.add(new_book)
         db.session.commit()
 
-        return redirect(url_for('admin', db=dab))
+
+    elif (dab == "Users"):
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        new_user = Users(name, email, password)
+
+        db.session.add(new_user)
+        db.session.commit()
+
+    return redirect(url_for('admin', db=dab))
 
 
-@app.route("/edit")
+@app.route("/edit", methods = ["POST"])
 def edit():
     id = request.args.get("id")
+    dab = request.args.get("dab")
 
-    image = request.files["image"]
+    image = request.files.get("image")
 
     if (image):
         image_Path = imagePathCoder(image)
@@ -126,9 +144,21 @@ def edit():
             os.remove(edit_book.image_url)
             edit_book.image_url = image_Path
 
-    db.session.add(edit_book)
-    db.session.commit()
-    flash("Book edited successfully")
+        db.session.add(edit_book)
+        db.session.commit()
+
+
+    elif (dab == "Users"):
+        edit_user = Users.query.get(id)
+
+        edit_user.username = request.form.get("name")
+        edit_user.email = request.form.get("email")
+        edit_user.password = request.form.get("password")
+
+        db.session.add(edit_user)
+        db.session.commit()
+
+    flash("User edited successfully")
     return redirect(url_for("admin", db=dab))
 
 
@@ -142,6 +172,11 @@ def delete():
         db.session.delete(delete_book)
         db.session.commit()
 
+    elif (dab == "Users"):
+        delete_user = Users.query.get(id)
+        db.session.delete(delete_user)
+        db.session.commit()
+
     return redirect(url_for("admin", db = dab))
 
 
@@ -149,7 +184,8 @@ def delete():
 if __name__ == "__main__":
 
     with app.app_context():
-        db.create_all()
+    
+
         app.run(debug=True)
 
 
