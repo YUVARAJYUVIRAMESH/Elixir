@@ -4,11 +4,27 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 import os
 
+# from main import app
 from functions import imagePathCoder
-
 from models import Books, Users, BooksRented, db
 
+
+# from flask_login import LoginManager, login_user, login_required, logout_user
+
 routes = Blueprint("routes", __name__, template_folder = "templates")
+
+
+
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# login_manager.login_view("routes.login")
+#
+#
+#
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return Users.query.get(int(user_id))
+
 
 @routes.route('/')
 def home():
@@ -124,3 +140,44 @@ def delete():
         db.session.commit()
 
     return redirect(url_for("routes.admin", db = dab))
+
+
+@routes.route("/login", methods = ["GET", "POST"])
+def login():
+    if request.method == "POST":
+        name = request.form.get("name")
+        Email = request.form.get("email")
+        password = request.form.get("password")
+
+        user = Users.query.filter(or_(username = name, email = Email)).first()
+
+        if user:
+            if (user.password == password):
+                # login_user(user)
+                return redirect(url_for("dashboard"))
+
+        else:
+            flash("Invalid User Credentials")
+
+    return render_template("login.html")
+
+@routes.route("/register", methods = ["GET", "POST"])
+def register():
+
+    if (request.method == "POST"):
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        user = Users(name, email, password)
+        db.session.add(user)
+        db.session.commit()
+        
+    return render_template("register.html")
+
+
+
+@routes.route("/dashboard")
+# @login_required
+def dashboard():
+    return "dashboard"
