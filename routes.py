@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from functions import imagePathCoder
 from models import Books, Users, BooksRented, db
 from sqlalchemy import or_
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 import os
 
 
@@ -151,7 +151,7 @@ def callRoutes(app, login_manager):
             if user:
                 if (user.password == password):
                     login_user(user)
-                    return redirect(url_for("routes.dashboard"))
+                    return redirect(url_for("routes.home"))
 
             else:
                 flash("Invalid User Credentials")
@@ -174,11 +174,6 @@ def callRoutes(app, login_manager):
 
 
 
-    @routes.route("/dashboard")
-    @login_required
-    def dashboard():
-        return render_template("dashboard.html")
-
 
     @routes.route("/logout")
     @login_required
@@ -196,6 +191,11 @@ def callRoutes(app, login_manager):
 
         books = Books.query.filter(Books.name.ilike(f"%{query}%")).all()
         return jsonify([{"id": book.id, "name": book.name} for book in books])
+
+    @routes.route("/profile")
+    @login_required
+    def profile():
+        return render_template("profile.html")
 
     return routes
 
