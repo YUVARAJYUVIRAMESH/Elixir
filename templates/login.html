@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
+	<h1>Login</h1>
 <form action='{{url_for("routes.login")}}' method="POST">
 	<label for="name">Name (or) Email:</label>
 	<input type="text" name="name">

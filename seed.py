@@ -1,6 +1,8 @@
-from main import db, Books, app
+from main import createApp
+from models import db, Books
 import os
 
+app = createApp()
 # Default image for all books (you can change this to real image names if available)
 DEFAULT_IMAGE = "static/image/default.jpg"
 

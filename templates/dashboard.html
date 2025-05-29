@@ -1,0 +1,37 @@
+<input type="text" id="search-input" placeholder="Search books..." />
+<ul id="results-list"></ul>
+
+<script>
+	const searchInput = document.getElementById("search-input");
+	const resultsList = document.getElementById("results-list");
+
+	searchInput.addEventListener("input", async function () {
+		const query = this.value.trim();
+
+		// Clear results if input is empty
+		if (!query) {
+			resultsList.innerHTML = "";
+			return;
+		}
+
+		try {
+			const response = await fetch(`/api/searchBooks?q=${encodeURIComponent(query)}`);
+			const data = await response.json();
+
+			resultsList.innerHTML = ""; // Clear previous results
+
+			if (data.length === 0) {
+				resultsList.innerHTML = "<li>No results found</li>";
+				return;
+			}
+
+			data.forEach(book => {
+				const li = document.createElement("li");
+				li.textContent = book.name;
+				resultsList.appendChild(li);
+			});
+		} catch (error) {
+			console.error("Search error:", error);
+		}
+	});
+</script>

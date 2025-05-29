@@ -1,14 +1,13 @@
-from flask import Blueprint
-from flask import render_template, request, redirect, url_for, flash
 from datetime import datetime
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from werkzeug.utils import secure_filename
-import os
 from functions import imagePathCoder
 from models import Books, Users, BooksRented, db
-
-
 from sqlalchemy import or_
 from flask_login import login_user, login_required, logout_user
+import os
+
+
 
 def callRoutes(app, login_manager):
 
@@ -178,7 +177,27 @@ def callRoutes(app, login_manager):
     @routes.route("/dashboard")
     @login_required
     def dashboard():
-        return "dashboard"
+        return render_template("dashboard.html")
 
+
+    @routes.route("/logout")
+    @login_required
+    def logout():
+        logout_user()
+
+        return redirect(url_for("routes.login"))
+
+    @routes.route("/api/searchBooks")
+    @login_required
+    def api_SearchBooks():
+        query = request.args.get("q", "")
+        if not query:
+            return jsonify([])
+
+        books = Books.query.filter(Books.name.ilike(f"%{query}%")).all()
+        return jsonify([{"id": book.id, "name": book.name} for book in books])
 
     return routes
+
+
+
