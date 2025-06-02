@@ -21,6 +21,7 @@ def createApp():
 
     db.init_app(app)
 
+
     routes = callRoutes(app, login_manager)
     app.register_blueprint(routes)
     

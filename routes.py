@@ -183,7 +183,6 @@ def callRoutes(app, login_manager):
         return redirect(url_for("routes.login"))
 
     @routes.route("/api/searchBooks")
-    @login_required
     def api_SearchBooks():
         query = request.args.get("q", "")
         if not query:
@@ -195,7 +194,7 @@ def callRoutes(app, login_manager):
     @routes.route("/profile")
     @login_required
     def profile():
-        return render_template("profile.html")
+        return render_template("profile.html", user = current_user)
 
     return routes
 

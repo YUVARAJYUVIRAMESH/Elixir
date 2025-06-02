@@ -1,9 +1,109 @@
 {% extends "base.html" %}
 
 
+{% block style %}
+
+	body {
+		background-color: #f8f9fa;
+	}
+
+	.profile-card {
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 20px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+	}
+
+	.avatar {
+		width: 100px;
+		border-radius: 50%;
+	}
+
+	.social-links a {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		color: #333;
+		text-decoration: none;
+	}
+
+	.social-links i {
+		margin-right: 10px;
+	}
+
+	.progress {
+		height: 10px;
+		border-radius: 5px;
+	}
+
+	.section-title {
+		font-size: 1.1rem;
+		font-weight: 500;
+		margin-bottom: 15px;
+		color: #555;
+	}
+{% endblock style %}
 
 {% block body %}
 
-	<h1>Profile Page</h1>
+
+	<div class="container py-5">
+		<div class="row">
+			<!-- Left Column -->
+			<div class="col-md-4">
+				<div class="profile-card text-center">
+					<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Avatar" class="avatar mb-3">
+					<h5>{{user.username}}</h5>
+					<p class="text-muted">Full Stack Developer</p>
+					<p class="text-muted">Bay Area, San Francisco, CA</p>
+					<div class="d-flex justify-content-center mb-3">
+						<button class="btn btn-primary me-2">Follow</button>
+						<button class="btn btn-outline-primary">Message</button>
+					</div>
+					<div class="social-links text-start">
+						<a href="#"><i class="bi bi-globe"></i> Website</a>
+						<a href="#"><i class="bi bi-github"></i> Github</a>
+						<a href="#"><i class="bi bi-twitter"></i> Twitter</a>
+						<a href="#"><i class="bi bi-instagram"></i> Instagram</a>
+						<a href="#"><i class="bi bi-facebook"></i> Facebook</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right Column -->
+			<div class="col-md-8">
+				<div class="profile-card mb-4">
+					<h5 class="mb-3">User Information</h5>
+					<div class="row mb-2">
+						<div class="col-sm-3"><strong>Full Name</strong></div>
+						<div class="col-sm-9"><input class="form-control" style="width: 50%;" type="text" name = "name" required value='{{user.username}}'></div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-sm-3"><strong>Email</strong></div>
+						<div class="col-sm-9"><input class="form-control" style="width: 50%;" type="email" name = "email" required value='{{user.email}}'></div>
+					</div>
+					<div class="row mb-2">
+					<a href="#">Change password?</a>
+					</div>
+					<!-- <div class="row mb-2"> -->
+					<!-- 	<div class="col-sm-3"><strong>Phone</strong></div> -->
+					<!-- 	<div class="col-sm-9"><input class="form-control" style="width: 50%;" type="text" name = "name" required value="vishwes"></div> -->
+					<!-- </div> -->
+					<!-- <div class="row mb-2"> -->
+					<!-- 	<div class="col-sm-3"><strong>Mobile</strong></div> -->
+					<!-- 	<div class="col-sm-9"><input class="form-control" style="width: 50%;" type="text" name = "name" required value="vishwes"></div> -->
+					<!-- </div> -->
+					<!-- <div class="row mb-2"> -->
+					<!-- 	<div class="col-sm-3"><strong>Address</strong></div> -->
+					<!-- 	<div class="col-sm-9"><input class="form-control" style="width: 50%;" type="text" name = "name" required value="vishwes"></div> -->
+					<!-- </div> -->
+					<div class="text-center mt-3">
+						<button class="btn btn-info text-white">Edit</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 {% endblock body %}
