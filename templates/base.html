@@ -4,28 +4,19 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title> ELIXIR - {% block title %} {% endblock title %}</title>
+	<title> ELIXIR - {% block title %}{% endblock title %}</title>
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-	<!-- for the profile icon -->
 	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=person" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 	<link rel="stylesheet" href="../static/css/base.css">
 
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
-
-		.details {
-			/* background-color: #e76f51; */
-			background-color: hsl(12, 75.76%, 67%);
-		}
-
-		.custom-font {
-			font-family: 'Libre Baskerville', serif;
-		}
 
 		.bg-Img {
 			position: relative;
@@ -44,7 +35,6 @@
 			height: 100%;
 			background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 1));
 			opacity: 0.9;
-			/* adjust for how strong you want the mask */
 			z-index: 1;
 		}
 
@@ -53,12 +43,9 @@
 			z-index: 2;
 		}
 
-		.material-symbols-outlined {
-			font-variation-settings:
-				'FILL' 0,
-				'wght' 400,
-				'GRAD' 0,
-				'opsz' 24
+		.navbar-brand {
+			font-weight: bold;
+			font-size: 1.5rem;
 		}
 
 		.material-symbols-outlined {
@@ -66,81 +53,92 @@
 				'FILL' 0,
 				'wght' 400,
 				'GRAD' 0,
-				'opsz' 24
+				'opsz' 24;
 		}
-
-			{% block style %}
-
-			{% endblock style %}
 	</style>
 
-
-	{% block head %}
-
-	{% endblock head %}
-
-
+	{% block head %}{% endblock head %}
 </head>
 
 <body>
 
-
-
-
 	<!-- Header -->
+<header class="bg-Img sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
 
-	<header class="bg-Img row d-flex align-items-center sticky-top">
-		<div class="col ms-5 mt-1">
-			<h2>ELIXIR</h2>
-		</div>
-{% block header %}
+      <!-- Left: Home, About, Account -->
+      <div class="d-flex align-items-center">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-3">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('routes.home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('routes.home') }}">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="material-symbols-outlined me-1">account_circle</span>
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              {% if current_user.is_authenticated %}
+              <li>
+                <a class="dropdown-item" href="{{ url_for('routes.profile') }}">
+                  <i class="fas fa-user me-2"></i>Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('routes.profile') }}">
+                  <i class="fas fa-book me-2"></i>My Books
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('routes.logout') }}">
+                  <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </a>
+              </li>
+              {% else %}
+              <li>
+                <a class="dropdown-item" href="{{ url_for('routes.login') }}">
+                  <i class="fas fa-sign-in-alt me-2"></i>Login
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('routes.register') }}">
+                  <i class="fas fa-user-plus me-2"></i>Sign Up
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                  <i class="fas fa-user me-2"></i>Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                  <i class="fas fa-book me-2"></i>My Books
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </div>
 
-{% endblock header %}
-		<nav class="col pe-5 pt-3 d-flex justify-content-end">
-			<ul class="list-inline">
-				<!-- <a href="#" style="color: black"><i class="fa-solid fa-cart-shopping fa-lg pe-2"></i></a> -->
-				<li class="list-inline-item"><a href="{{url_for('routes.home')}}"
-						style="color: black; text-decoration: none;">Home</a></li>
-				<li class="list-inline-item"><a href="{{url_for('routes.home')}}"
-						style="color: black; text-decoration: none;">About</a></li>
-				<li class="list-inline-item"><a href="{{url_for('routes.register')}}"
-						style="color: black; text-decoration: none;">SignUp</a></li>
-				<li class="list-inline-item"><a href="{{url_for('routes.login')}}"
-						style="color: black; text-decoration: none;">Login</a></li>
-
-				<li class="list-inline-item dropdown">
-					<a href="#" class="dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
-						aria-expanded="false" style="vertical-align: middle; color: black; text-decoration: none;">
-						<span class="material-symbols-outlined">account_circle</span>
-					</a>
-					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-						{% if current_user.is_authenticated %}
-						<li><a class="dropdown-item" href='{{ url_for("routes.profile") }}'>Profile</a></li>
-						<li><a class="dropdown-item" href='{{ url_for("routes.profile") }}'>My Books</a></li>
-						<li><a class="dropdown-item" href='{{ url_for("routes.logout") }}'>Logout</a></li>
-						{% else %}
-
-						<li><a class="dropdown-item" href='#' data-bs-toggle="modal"
-								data-bs-target="#loginPromptModal">Profile</a></li>
-						<li><a class="dropdown-item" href='#' data-bs-toggle="modal"
-								data-bs-target="#loginPromptModal">My Books</a></li>
-						<li><a class="dropdown-item" href='#' data-bs-toggle="modal"
-								data-bs-target="#loginPromptModal">Logout</a></li>
-				{% endif %}
-					</ul>
-				</li>
+      <!-- Right: ELIXIR Logo -->
+      <a class="navbar-brand ms-auto me-4" href="{{ url_for('routes.home') }}">ELIXIR</a>
+    </div>
+  </nav>
+</header>
 
 
-			</ul>
-		</nav>
+	{% block body %}{% endblock body %}
 
-	</header>
-
-
-
-	{% block body%}
-	{% endblock body %}
-
+	<!-- Login Prompt Modal -->
 	<div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel"
 		aria-hidden="true">
 		<div class="modal-dialog">
@@ -153,7 +151,7 @@
 					You must be logged in to access this page.
 				</div>
 				<div class="modal-footer">
-					<a href='{{ url_for("routes.login") }}' class="btn btn-primary">Login</a>
+					<a href="{{ url_for('routes.login') }}" class="btn btn-primary">Login</a>
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -163,7 +161,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
-
 </body>
 
 </html>

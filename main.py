@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_login import LoginManager
-from models import db
+from flask_login import LoginManager 
 from routes import callRoutes
+from models import db
 
 
 

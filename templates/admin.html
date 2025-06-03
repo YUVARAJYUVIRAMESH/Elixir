@@ -1,8 +1,70 @@
 {% extends "base.html" %}
 
 {% block body %}
-<!-- The value of db should be the same as the html file after the admin in its name. For ex: for "adminBooks.html" the db value should be "Books" -->
-<a href='{{url_for("routes.admin", db = "Books")}}'>BOOKS</a>
-<a href='{{url_for("routes.admin", db = "Users")}}'>USERS</a>
-<a href='{{url_for("routes.admin", db = "BooksRented")}}'>RENTED BOOKS</a>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .admin-container {
+        background-color: #ffffff;
+        padding: 40px 60px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+
+    .admin-container h1 {
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+
+    .admin-link {
+        display: block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 28px;
+        margin: 15px 0;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+    .admin-link:hover {
+        background-color: #45a049;
+    }
+
+    .admin-link:nth-child(2) {
+        background-color: #2196F3;
+    }
+
+    .admin-link:nth-child(2):hover {
+        background-color: #1976D2;
+    }
+
+    .admin-link:nth-child(3) {
+        background-color: #FF5722;
+    }
+
+    .admin-link:nth-child(3):hover {
+        background-color: #E64A19;
+    }
+</style>
+
+<div class="admin-container">
+    <h1>Admin Dashboard</h1>
+    <a class="admin-link" href='{{ url_for("routes.admin", db="Books") }}'>📚 Manage Books</a>
+    <a class="admin-link" href='{{ url_for("routes.admin", db="Users") }}'>👤 Manage Users</a>
+    <a class="admin-link" href='{{ url_for("routes.admin", db="BooksRented") }}'>📖 View Rented Books</a>
+</div>
 {% endblock %}
+
