@@ -5,6 +5,12 @@ from routes import callRoutes
 
 
 
+def returnDb():
+    return db
+
+
+
+
 
 def createApp():
 

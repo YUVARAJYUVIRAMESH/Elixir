@@ -33,11 +33,49 @@
 			font-style: italic;
 			color: #555;
 		}
+		 body {
+      background-color: #f2f6fc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+    .category-list {
+      max-width: 600px;
+      margin: 40px auto;
+    }
+    .category-list a {
+      display: block;
+      padding: 15px;
+      margin: 10px 0;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+    .category-list a:hover {
+      background-color: #0056b3;
+    }
 {% endblock style %}
 
 {% block body %}
 
-
+ <h1>📚 Book Categories</h1>
+  <div class="category-list">
+    <a href="books.html?category=Fiction">Fiction</a>
+    <a href="books.html?category=Biography">Biography</a>
+    <a href="books.html?category=Comics">Comics</a>
+    <a href="books.html?category=Self-Help">Self-Help</a>
+    <a href="books.html?category=Education">Education</a>
+    <a href="books.html?category=Romance">Romance</a>
+    <a href="books.html?category=Mystery">Mystery</a>
+    <a href="books.html?category=Philosophy">Philosophy</a>
+    <a href="books.html?category=Art">Art</a>
+  </div>
 	<div class="container text-center">
 		<h1>📚 Browse Books</h1>
 		<div id="categoryTitle"></div>
