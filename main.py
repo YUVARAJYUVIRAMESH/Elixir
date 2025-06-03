@@ -5,12 +5,6 @@ from routes import callRoutes
 
 
 
-def returnDb():
-    return db
-
-
-
-
 
 def createApp():
 
@@ -32,6 +26,9 @@ def createApp():
     app.register_blueprint(routes)
     
 
-
-
     return app
+
+def returnDb():
+    return db
+
+

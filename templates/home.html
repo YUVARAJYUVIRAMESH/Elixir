@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+
+{% block head %}
+<link rel="stylesheet" href="../static/css/home.css">
+{% endblock head %}
+
 {% block style %}
 
 		body {
@@ -60,22 +65,176 @@
     .category-list a:hover {
       background-color: #0056b3;
     }
+
+    .custom-carousel-card {
+      background-color: #fdfcf8;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: left;
+      height: 100%;
+    }
+    .carousel-control-custom {
+      background-color: #d0e7f5;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-size: 60% 60%;
+    }
 {% endblock style %}
+
+{% block header %}
+		
+		<div class="search-bar">
+			<input type="text" id="searchInput" class="form-control" placeholder="Search by title..." />
+		</div>
+
+{% endblock header %}
 
 {% block body %}
 
- <h1>📚 Book Categories</h1>
-  <div class="category-list">
-    <a href="books.html?category=Fiction">Fiction</a>
-    <a href="books.html?category=Biography">Biography</a>
-    <a href="books.html?category=Comics">Comics</a>
-    <a href="books.html?category=Self-Help">Self-Help</a>
-    <a href="books.html?category=Education">Education</a>
-    <a href="books.html?category=Romance">Romance</a>
-    <a href="books.html?category=Mystery">Mystery</a>
-    <a href="books.html?category=Philosophy">Philosophy</a>
-    <a href="books.html?category=Art">Art</a>
+
+<div class="container py-4">
+  <h5 class="mb-3">Welcome to Open Library</h5>
+  
+			<!-- For the carousel at the top -->
+  <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active shadow">
+        <div class="row justify-content-center g-3">
+          <div class="col-md-4">
+            <div class="custom-carousel-card d-flex align-items-center gap-3">
+              <img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="Icon">
+              <div>
+                <h6 class="mb-1">Be an Open Librarian</h6>
+                <small>Dozens of ways you can help improve the library</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-carousel-card d-flex align-items-center gap-3">
+              <img src="https://img.icons8.com/ios/50/000000/volunteer.png" alt="Icon">
+              <div>
+                <h6 class="mb-1">Volunteer at Open Library</h6>
+                <small>Discover opportunities to improve the library</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-carousel-card d-flex align-items-center gap-3">
+              <img src="https://img.icons8.com/ios/50/000000/feedback.png" alt="Icon">
+              <div>
+                <h6 class="mb-1">Send us feedback</h6>
+                <small>Your feedback will help us improve these cards</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add more slides here if needed -->
+
+    </div>
+
+    <!-- Custom controls -->
+    <button class="carousel-control-prev carousel-control-custom" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next carousel-control-custom" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
   </div>
+</div>
+
+
+	<div class="details custom-font row py-4">
+		<!-- Text -->
+		<div class="col p-5" style="margin-left: 10%; ">
+			<div class="text-uppercase small text-muted mb-2">COCO &gt; Soaps</div>
+			<hr style="background-color: black; height:3px; margin-right: 50px;">
+			<h1 class="fw-bold display-7">Nature’s Nourishing Elixir</h1>
+			<p>Extracted without the use of harsh additives or preservatives, this oil retains its natural goodness,
+				making it gentle and safe for daily use. Rich in healthy fats and antioxidants, it deeply hydrates,
+				soothes irritation, and promotes a healthy glow. </p>
+
+
+		</div>
+		<!-- Image -->
+		<div class="col p-4">
+			<img src="../static/oilBottle.png" style="height: 300px; width: 250px; margin-top: 2%; border-radius: 15px;"
+				alt="">
+		</div>
+	</div>
+
+
+<br><br>
+<div class="row text-center">
+	<h1>Categories</h1>
+</div>
+<br>
+	
+		<div class="row m-3 text-center gap-4 mx-5">
+	
+	<div class="col categoryList rounded-3 p-2 hover-shadow">
+					<a class="categoryLink" href="books.html?category=Fiction">Fiction</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Non-Fiction</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Comics</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Self-Help</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Education</a>
+			</div>
+
+		</div>
+
+			<!-- second Row of categories -->
+		<div class="row m-3 text-center gap-4 mx-5" >
+	
+			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-left: 200px;">
+				<a class="categoryLink"  href="books.html?category=Fiction">Romance</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Mystery</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Philosophy</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow" style=" margin-right: 200px;">
+				<a  class="categoryLink" href="books.html?category=Fiction">Art</a>
+			</div>
+
+		</div>
+
+		<div class="row m-3 text-center gap-4 mx-5">
+	
+			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-left: 300px;">
+				<a class="categoryLink"  href="books.html?category=Fiction">Fiction</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
+				<a  class="categoryLink" href="books.html?category=Fiction">Fiction</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-right: 300px;">
+				<a  class="categoryLink" href="books.html?category=Fiction">Fiction</a>
+			</div>
+
+		</div>
+
+<br><br>
+<br><br>
+
 	<div class="container text-center">
 		<h1>📚 Browse Books</h1>
 		<div id="categoryTitle"></div>

@@ -1,0 +1,18 @@
+.categoryList {
+	background-color: #0d6efd;
+}
+
+.categoryList:hover {
+	background-color: #383ac1;
+}
+
+.categoryLink {
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+
+.categoryLink:hover {
+	color: white;
+}
