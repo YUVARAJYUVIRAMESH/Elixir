@@ -1,13 +1,157 @@
 {% extends "base.html" %}
 
 {% block body %}
-	<h1>Login</h1>
-<form action='{{url_for("routes.login")}}' method="POST">
-	<label for="name">Name (or) Email:</label>
-	<input type="text" name="name">
-	<label for="password">Password:</label>
-	<input type="text" name="password">
-	<input type="submit" value="Login">
-	
-</form>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.4s, color 0.4s;
+  }
+  .light-mode {
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #222;
+  }
+  .dark-mode {
+    background: linear-gradient(135deg, #232526, #1c1c1c);
+    color: #eee;
+  }
+  .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .login-form {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.4s, color 0.4s;
+  }
+  .dark-mode .login-form {
+    background: #2c2c2c;
+    color: #eee;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+  }
+  .form-control {
+    transition: background-color 0.4s, color 0.4s;
+  }
+  .dark-mode .form-control {
+    background-color: #444;
+    color: #eee;
+    border-color: #555;
+  }
+  .btn-primary {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+    transition: background-color 0.3s;
+  }
+  .btn-primary:hover {
+    background-color: #357ABD;
+    border-color: #357ABD;
+  }
+  .dark-mode .btn-primary {
+    background-color: #1e73be;
+    border-color: #1e73be;
+  }
+  .dark-mode .btn-primary:hover {
+    background-color: #155a8a;
+    border-color: #155a8a;
+  }
+  .mode-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    font-size: 1.5rem;
+    user-select: none;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    transition: color 0.3s ease;
+  }
+  .mode-toggle:hover {
+    color: #4a90e2;
+  }
+  /* Success message style */
+  #success-msg {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(76,175,80,0.4);
+    z-index: 9999;
+  }
+</style>
+
+<div class="login-container light-mode" id="page-container">
+  <form action="{{ url_for('routes.login') }}" method="POST" class="login-form" autocomplete="off">
+    <h2 class="mb-4 text-center">Login</h2>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Name or Email</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name or email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required autocomplete="new-password">
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+  </form>
+
+  <button class="mode-toggle" id="toggle-mode" aria-label="Toggle Light/Dark Mode" title="Toggle Light/Dark Mode">
+    🌙
+  </button>
+
+  {% if login_success %}
+  <div id="success-msg">
+    Login Successful! Redirecting...
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "/home"; // Redirect after 2 seconds
+    }, 2000);
+  </script>
+  {% endif %}
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('toggle-mode');
+  const pageContainer = document.getElementById('page-container');
+
+  // Load saved mode on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('colorMode');
+    if (savedMode === 'dark') {
+      pageContainer.classList.replace('light-mode', 'dark-mode');
+      toggleBtn.textContent = '☀️';
+    }
+  });
+
+  toggleBtn.addEventListener('click', () => {
+    if (pageContainer.classList.contains('light-mode')) {
+      pageContainer.classList.replace('light-mode', 'dark-mode');
+      toggleBtn.textContent = '☀️';
+      localStorage.setItem('colorMode', 'dark');
+    } else {
+      pageContainer.classList.replace('dark-mode', 'light-mode');
+      toggleBtn.textContent = '🌙';
+      localStorage.setItem('colorMode', 'light');
+    }
+  });
+</script>
 {% endblock %}

@@ -1,15 +1,308 @@
 {% extends "base.html" %}
 
 {% block body %}
-	<h1>Register</h1>
-<form action='{{url_for("routes.register")}}' method="POST">
-	<label for="name">Name:</label>
-	<input type="text" name="name">
-	<label for="email">Email:</label>
-	<input type="email" name="email">
-	<label for="password">Password:</label>
-	<input type="text" name="password">
-	<input type="submit" value="Regiser">
-	
-</form>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  /* Reset and base */
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.5s, color 0.5s;
+  }
+
+  /* Light and dark mode backgrounds */
+  .light-mode {
+    background: #f0f4f8;
+    color: #222;
+  }
+  .dark-mode {
+    background: #12121d;
+    color: #eee;
+  }
+
+  /* Container with split screen */
+  .container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Left side with gradient, text and SVG */
+  .left-panel {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 40px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .left-panel h1 {
+    font-size: 3.5rem;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .left-panel p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  .illustration {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    width: 300px;
+    opacity: 0.85;
+    user-select: none;
+  }
+
+  /* Right side with form */
+  .right-panel {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  /* Dark mode changes */
+  .dark-mode .right-panel {
+    background: #22222d;
+  }
+  .dark-mode .left-panel {
+    background: linear-gradient(135deg, #42275a, #734b6d);
+  }
+
+  /* Register form */
+  form.register-form {
+    width: 100%;
+    max-width: 400px;
+    background: transparent;
+  }
+
+  form.register-form h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: inherit;
+  }
+
+  /* Floating label container */
+  .form-group {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  /* Inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 1.1rem;
+    padding: 10px 5px 8px 5px;
+    background: transparent;
+    color: inherit;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  /* Animated underline */
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-bottom-color: #764ba2;
+  }
+
+  /* Label */
+  label {
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    font-size: 1rem;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  /* Move label up when input has focus or has text */
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 0.85rem;
+    color: #764ba2;
+    font-weight: 600;
+  }
+
+  /* Submit button */
+  .btn-register {
+    width: 100%;
+    padding: 15px;
+    background: #764ba2;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn-register:hover {
+    background: #5a367d;
+  }
+
+  /* Dark mode input underline & label */
+  .dark-mode input[type="text"],
+  .dark-mode input[type="email"],
+  .dark-mode input[type="password"] {
+    border-bottom-color: #555;
+  }
+  .dark-mode input:focus {
+    border-bottom-color: #bb86fc;
+  }
+  .dark-mode label {
+    color: #bbb;
+  }
+  .dark-mode input:focus + label,
+  .dark-mode input:not(:placeholder-shown) + label {
+    color: #bb86fc;
+  }
+
+  /* Dark mode button */
+  .dark-mode .btn-register {
+    background: #bb86fc;
+    color: #222;
+  }
+  .dark-mode .btn-register:hover {
+    background: #9a6de0;
+    color: white;
+  }
+
+  /* Mode toggle button top center */
+  .mode-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    font-size: 2rem;
+    user-select: none;
+    color: #764ba2;
+    background: transparent;
+    border: none;
+    outline: none;
+    transition: color 0.3s ease;
+    z-index: 100;
+  }
+  .mode-toggle:hover {
+    color: #5a367d;
+  }
+
+  /* Responsive */
+  @media(max-width: 900px) {
+    .container {
+      flex-direction: column;
+    }
+    .left-panel, .right-panel {
+      flex: none;
+      width: 100%;
+      height: 50vh;
+    }
+    .illustration {
+      position: static;
+      width: 200px;
+      margin-top: 20px;
+      opacity: 0.7;
+      align-self: center;
+    }
+  }
+</style>
+
+<div class="container light-mode" id="page-container">
+
+  <!-- Left side with text and illustration -->
+  <div class="left-panel">
+    <h1>Join Our Community</h1>
+    <p>Create an account and enjoy personalized features and content tailored just for you.</p>
+    <!-- Simple SVG illustration (abstract shape) -->
+    <svg class="illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" >
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#764ba2"/>
+          <stop offset="100%" stop-color="#667eea"/>
+        </linearGradient>
+      </defs>
+      <circle cx="250" cy="250" r="200" fill="url(#grad)" opacity="0.7"/>
+      <circle cx="200" cy="230" r="100" fill="#fff" opacity="0.15"/>
+      <circle cx="320" cy="270" r="80" fill="#fff" opacity="0.1"/>
+    </svg>
+  </div>
+
+  <!-- Right side with form -->
+  <div class="right-panel">
+    <form action="{{ url_for('routes.register') }}" method="POST" class="register-form" autocomplete="off" novalidate>
+      <h2>Create Account</h2>
+
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder=" " required>
+        <label for="name">Full Name</label>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Email Address</label>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" name="password" placeholder=" " required minlength="6">
+        <label for="password">Password (min 6 chars)</label>
+      </div>
+
+      <button type="submit" class="btn-register">Register</button>
+    </form>
+  </div>
+
+  <!-- Dark/light mode toggle -->
+  <button class="mode-toggle" id="toggle-mode" aria-label="Toggle Light/Dark Mode" title="Toggle Light/Dark Mode">🌙</button>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('toggle-mode');
+  const pageContainer = document.getElementById('page-container');
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('colorMode');
+    if (savedMode === 'dark') {
+      pageContainer.classList.replace('light-mode', 'dark-mode');
+      toggleBtn.textContent = '☀️';
+      document.body.style.background = '#12121d';
+    }
+  });
+
+  toggleBtn.addEventListener('click', () => {
+    if (pageContainer.classList.contains('light-mode')) {
+      pageContainer.classList.replace('light-mode', 'dark-mode');
+      toggleBtn.textContent = '☀️';
+      document.body.style.background = '#12121d';
+    } else {
+      pageContainer.classList.replace('dark-mode', 'light-mode');
+      toggleBtn.textContent = '🌙';
+      document.body.style.background = '';
+    }
+    localStorage.setItem('colorMode', pageContainer.classList.contains('dark-mode') ? 'dark' : 'light');
+  });
+</script>
+
 {% endblock %}
