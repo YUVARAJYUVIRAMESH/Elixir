@@ -100,7 +100,7 @@
 
 
 <div class="container py-4">
-  <h5 class="mb-3">Welcome to Open Library</h5>
+  <h5 class="mb-3 text-center">Welcome to Elixir Library</h5>
   
 			<!-- For the carousel at the top -->
   <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -143,20 +143,19 @@
 
     </div>
 
-    <!-- Custom controls -->
-    <button class="carousel-control-prev carousel-control-custom" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next carousel-control-custom" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
+    <!-- <!-- Custom controls --> 
+    <!-- <button class="carousel-control-prev carousel-control-custom" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev"> -->
+    <!--   <span class="carousel-control-prev-icon"></span> -->
+    <!-- </button> -->
+    <!-- <button class="carousel-control-next carousel-control-custom" type="button" data-bs-target="#cardCarousel" data-bs-slide="next"> -->
+    <!--   <span class="carousel-control-next-icon"></span> -->
+    <!-- </button> -->
   </div>
 </div>
 
-
-	<div class="details custom-font row py-4">
+	<div class="details custom-font row">
 		<!-- Text -->
-		<div class="col p-5" style="margin-left: 10%; ">
+		<div class="col p-5" style="margin-left: 10%; margin-top: 2%;">
 			<div class="text-uppercase small text-muted mb-2">COCO &gt; Soaps</div>
 			<hr style="background-color: black; height:3px; margin-right: 50px;">
 			<h1 class="fw-bold display-7">Nature’s Nourishing Elixir</h1>
@@ -168,10 +167,11 @@
 		</div>
 		<!-- Image -->
 		<div class="col p-4">
-			<img src="../static/oilBottle.png" style="height: 300px; width: 250px; margin-top: 2%; border-radius: 15px;"
+			<img src="../static/oilBottle.png" style="height: 300px; width: 250px; margin-top: 9%; border-radius: 15px;"
 				alt="">
 		</div>
 	</div>
+
 
 
 <br><br>
@@ -181,22 +181,33 @@
 <br>
 	
 		<div class="row m-3 text-center gap-4 mx-5">
-	
-	<div class="col categoryList rounded-3 p-2 hover-shadow">
-					<a class="categoryLink" href="books.html?category=Fiction">Fiction</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Non-Fiction</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Comics</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Self-Help</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Education</a>
-			</div>
+
+	<a class="categoryLink col" href="books.html?category=Fiction">
+		<div class="col categoryList rounded-3 p-2 hover-shadow">
+			All Books
+		</div>
+	</a>
+
+	<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Fiction")}}'>
+		<div class="col categoryList rounded-3 p-2 hover-shadow">
+			Fiction
+		</div>
+	</a>
+	<a class="categoryLink col" href="books.html?category=Fiction">
+		<div class="col categoryList rounded-3 p-2 hover-shadow">
+			All Books
+		</div>
+	</a>
+	<a class="categoryLink col" href="books.html?category=Fiction">
+		<div class="col categoryList rounded-3 p-2 hover-shadow">
+			All Books
+		</div>
+	</a>
+	<a class="categoryLink col" href="books.html?category=Fiction">
+		<div class="col categoryList rounded-3 p-2 hover-shadow">
+			All Books
+		</div>
+	</a>
 
 		</div>
 
@@ -204,16 +215,16 @@
 		<div class="row m-3 text-center gap-4 mx-5" >
 	
 			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-left: 200px;">
+				<a  class="categoryLink" href="books.html?category=Fiction">Education</a>
+			</div>
+			<div class="col categoryList rounded-3 p-2 hover-shadow">
 				<a class="categoryLink"  href="books.html?category=Fiction">Romance</a>
 			</div>
 			<div class="col categoryList rounded-3 p-2 hover-shadow">
 				<a  class="categoryLink" href="books.html?category=Fiction">Mystery</a>
 			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Philosophy</a>
-			</div>
 			<div class="col categoryList rounded-3 p-2 hover-shadow" style=" margin-right: 200px;">
-				<a  class="categoryLink" href="books.html?category=Fiction">Art</a>
+				<a  class="categoryLink" href="books.html?category=Fiction">Philosophy</a>
 			</div>
 
 		</div>
@@ -221,7 +232,7 @@
 		<div class="row m-3 text-center gap-4 mx-5">
 	
 			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-left: 300px;">
-				<a class="categoryLink"  href="books.html?category=Fiction">Fiction</a>
+				<a  class="categoryLink" href="books.html?category=Fiction">Art</a>
 			</div>
 			<div class="col categoryList rounded-3 p-2 hover-shadow">
 				<a  class="categoryLink" href="books.html?category=Fiction">Fiction</a>
@@ -244,8 +255,112 @@
 			<input type="text" id="searchInput" class="form-control" placeholder="Search by title..." />
 		</div>
 
-		<div class="row" id="bookList">
-			<!-- Books will be rendered here dynamically -->
+		<!-- <div class="row" id="bookList"> -->
+		<!-- 	<!-- Books will be rendered here dynamically --> 
+		<!-- </div> -->
+
+		<div class="row">
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
+						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
+						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rent', Data=data) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
+						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
+						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rent', Data=data) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
+						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
+						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rent', Data=data) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
+						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
+						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rent', Data=data) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -601,6 +716,14 @@
 			}
 
 			filteredBooks.forEach(book => {
+				const name = book.title
+				const category = book.category
+				const isbn = book.isbn
+				const url = book.image_url
+				const description = book.description
+
+				const data = encodeURIComponent(`${name}::${isbn}::${gerne}::${url}::{description}`);
+
 				const div = document.createElement('div');
 				div.className = 'col-md-4 mb-4 book-card-item';
 				div.innerHTML = `
@@ -609,7 +732,7 @@
               <h5 class="card-title">${book.title}</h5>
               <p class="card-text"><strong>Category:</strong> ${book.category}</p>
               <p class="card-text"><strong>Author:</strong> ${book.author}</p>
-              <button class="btn btn-primary">Rent</button>
+<a href='{{url_for("routes.rent", Data = data)}}' class="btn btn-primary">Rent</a>
             </div>
           </div>
         `;

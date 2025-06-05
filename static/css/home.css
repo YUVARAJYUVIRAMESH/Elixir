@@ -16,3 +16,145 @@
 .categoryLink:hover {
 	color: white;
 }
+
+
+/* body { */
+/* 	background-color: #081a3c; */
+/* 	color: #ccd6f6; */
+/* 	font-family: 'Segoe UI', sans-serif; */
+/* } */
+
+.form-control,
+.form-control:focus {
+	background-color: hsl(360 0% 84%);
+	border: none;
+	color: #ababab;
+}
+
+.btn-custom {
+	border: 1px solid #0d6efd;
+	color: #0d6efd;
+}
+
+.btn-custom:hover {
+	background-color: #0d6efd;
+	color: white;
+}
+
+.section {
+	padding: 60px 0;
+}
+
+input::placeholder {
+	color: white;
+	opacity: 1;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: rgb(241 245 249);
+}
+
+main {
+	width: 100vw;
+	height: 100vh;
+	flex-direction: row;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+em {
+	color: #0d6efd;
+}
+
+/* Controls */
+.carousel-control-next {
+	margin: 0 3em;
+}
+
+i.fa-arrow-right,
+i.fa-arrow-left {
+	background: none;
+	border: 2px solid #0d6efd;
+	color: #0d6efd;
+	padding: 10px;
+	border-radius: 100%;
+	transition: background .6s ease;
+}
+
+i.fa-arrow-right:hover,
+i.fa-arrow-left:hover {
+	background: #0d6efd;
+	color: white;
+}
+
+/* Indicators */
+.carousel-indicators {
+	justify-content: flex-start;
+	transform: translate(-40px, 50px);
+}
+
+.carousel-indicators [data-bs-target] {
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	border: 2px solid #0d6efd;
+}
+
+.carousel-indicators .active {
+	opacity: 1;
+	background-color: #0d6efd;
+}
+
+/* Control buttons */
+.control-btn {
+	position: absolute;
+	top: 8px;
+	right: 10em;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+	top: 1em;
+	left: 3em;
+}
+
+.testimonial-text {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	column-gap: 20px;
+}
+
+.wow {
+	position: relative;
+	grid-column: span 2;
+}
+
+.carousel-landmark {
+	grid-column: span 3;
+}
+
+@media screen and (max-width: 576px) {
+	.testimonial-text {
+		margin-top: 50px;
+		row-gap: 50px;
+
+	}
+
+	.wow {
+		grid-column: span 5;
+	}
+
+	.carousel-landmark {
+		grid-column: span 5;
+	}
+}

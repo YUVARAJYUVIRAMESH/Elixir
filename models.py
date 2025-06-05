@@ -24,15 +24,15 @@ class Books(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(70), nullable=False)
     isbn = db.Column(db.String(70), nullable=False)
-    genre = db.Column(db.String(50), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.String(90), nullable=False)
     description = db.Column(db.String(200), nullable=False)
 
-    def __init__(self, name, isbn, genre, image_url, description):
+    def __init__(self, name, isbn, category, image_url, description):
 
         self.name = name
         self.isbn = isbn
-        self.genre = genre
+        self.category = category
         self.image_url = image_url
         self.description = description
 
