@@ -1,6 +1,6 @@
-{% extends "base.html" %}
-
-{% block body %}
+<html>
+	<head>
+		
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -59,12 +59,17 @@
         background-color: #E64A19;
     }
 </style>
-
+	</head>
+	<body>
+		
 <div class="admin-container">
     <h1>Admin Dashboard</h1>
     <a class="admin-link" href='{{ url_for("routes.admin", db="Books") }}'>📚 Manage Books</a>
     <a class="admin-link" href='{{ url_for("routes.admin", db="Users") }}'>👤 Manage Users</a>
     <a class="admin-link" href='{{ url_for("routes.admin", db="BooksRented") }}'>📖 View Rented Books</a>
 </div>
-{% endblock %}
+
+	</body>
+</html>
+
 
