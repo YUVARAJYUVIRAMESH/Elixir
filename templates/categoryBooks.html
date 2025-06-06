@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+	  .styled-heading {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 0.5em 1em;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0.25em;
+    background-color: #f8f9fa;
+  }
+	
+
+{% endblock style %}
+{% block body %}
+
+{% if data %}
+	<div class="container">
+			<br><br>
+			<div class="row">
+		  {% if allCategory %}
+		<h1 class="text-center styled-heading">Category: <i style="color: blue;">All Books</i></h1>
+		  {% else %}
+		<h1 class="text-center styled-heading">Category: <i style="color: blue;">{{data[0].category}}</i></h1>
+		  {% endif %}
+
+			</div>
+		<div class="row">
+
+	{% for book in data %}
+	
+			<div class="col-3 mt-5">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+	<h5 class="card-title fw-bold text-dark">{{book.name}}</h5>
+	<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book.category}}</p>
+	  <p class="card-text text-muted mb-1"><strong>Author:</strong> {{book.author}}</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href='{{ url_for("routes.rentBook", Data=data) }}'
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+{% endfor %}
+
+
+		</div>
+
+	</div>
+{% else %}
+<h4 class="text-center">NO BOOKS</h4>
+
+{% endif %}
+	
+{% endblock body %}

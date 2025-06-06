@@ -36,7 +36,7 @@
 						<th>Id</th>
 						<th>Name</th>
 						<th>ISBN</th>
-						<th>Genre</th>
+						<th>category</th>
 						<th>Image</th>
 						<th>Action</th>
 					</tr>
@@ -47,7 +47,7 @@
 						<td>{{row.id}}</td>
 						<td>{{row.name}}</td>
 						<td>{{row.isbn}}</td>
-						<td>{{row.genre}}</td>
+						<td>{{row.category}}</td>
 						<td><img src="{{row.image_url}}" width="80" height="55" alt="image"></td>
 
 
@@ -76,14 +76,14 @@
 										</div>
 
 										<div class="form-group">
-											<label for="isbn">ISBN: </label>
-											<input type="text" class="form-control" name="isbn" value='{{row.isbn}}'
+											<label for="isbn">ISBN-13: </label>
+											<input type="number" class="form-control" name="isbn" value='{{row.isbn}}'
 												required="True"></input>
 										</div>
 
 										<div class="form-group">
-											<label for="genre">GENRE: </label>
-											<input type="text" class="form-control" name="genre" value='{{row.genre}}'
+											<label for="category">Category: </label>
+											<input type="text" class="form-control" name="category" value='{{row.category}}'
 												required="True"></input>
 										</div>
 
@@ -131,13 +131,26 @@
 								</div>
 
 								<div class="form-group">
-									<label for="isbn">ISBN: </label>
-									<input type="text" class="form-control" name="isbn" required="True"></input>
+									<label for="isbn">ISBN-13: </label>
+									<input type="number" class="form-control" name="isbn" required="True"></input>
 								</div>
 
 								<div class="form-group">
-									<label for="genre">GENRE: </label>
-									<input type="text" class="form-control" name="genre" required="True"></input>
+									<label for="category">category: </label>
+									<select name="category" id="category" class="form-select">
+									<option selected disabled>Select a category</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Non-Fiction">Non-Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+									<option value="Fiction">Fiction</option>
+</select>
 								</div>
 
 								<br>

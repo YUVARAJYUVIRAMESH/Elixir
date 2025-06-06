@@ -55,14 +55,14 @@ def callRoutes(app, login_manager):
 
             name = request.form["name"]
             isbn = request.form["isbn"]
-            genre = request.form["genre"]
+            category = request.form["category"]
             image = request.files["image"]
             description = request.form["description"]
 
             image_path = imagePathCoder(image)
 
             image.save(image_path)
-            new_book = Books(name, isbn, genre, image_path, description)
+            new_book = Books(name, isbn, category, image_path, description)
             db.session.add(new_book)
             db.session.commit()
 
@@ -96,7 +96,7 @@ def callRoutes(app, login_manager):
 
             edit_book.name = request.form["name"]
             edit_book.isbn = request.form["isbn"]
-            edit_book.genre = request.form["genre"]
+            edit_book.category = request.form["category"]
             edit_book.description = request.form["description"]
 
             if (image and os.path.exists(edit_book.image_url)):
@@ -196,7 +196,42 @@ def callRoutes(app, login_manager):
     def profile():
         return render_template("profile.html", user = current_user)
 
+
+    @routes.route("/routes")
+    def rent():
+        Data = request.args.get("Data")
+        name, isbn, category, url, description = Data.split("::")
+        data = {"name":name, "isbn": isbn, "category": category, "image_url": url, "description": description}
+
+        return render_template("test.html", data = data)
+
+    @routes.route("/categoryBooks")
+    def categoryBooks():
+        Category = request.args.get("category")
+
+        if Category == "AllBooks":
+            AllBooks = Books.query.all()
+            return render_template("categoryBooks.html", data = AllBooks, allCategory = True)
+
+        booksInCategory = Books.query.filter_by(category = Category).all()
+
+        if (booksInCategory):
+            return render_template("categoryBooks.html", data = booksInCategory)
+        else:
+            return "NO BOOKS"
+
+
+    @routes.route("/rentBook")
+    @login_required
+    def rentBook():
+        return render_template("test2.html")
+
     return routes
+    
+
+
+
+
 
 
 
