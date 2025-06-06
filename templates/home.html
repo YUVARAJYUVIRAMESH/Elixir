@@ -182,7 +182,7 @@
 	
 		<div class="row m-3 text-center gap-4 mx-5">
 
-	<a class="categoryLink col" href="books.html?category=Fiction">
+	<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "AllBooks")}}'>
 		<div class="col categoryList rounded-3 p-2 hover-shadow">
 			All Books
 		</div>
@@ -193,20 +193,20 @@
 			Fiction
 		</div>
 	</a>
-	<a class="categoryLink col" href="books.html?category=Fiction">
+	<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Non-Fiction")}}'>
 		<div class="col categoryList rounded-3 p-2 hover-shadow">
-			All Books
+			Non-Fiction
 		</div>
 	</a>
-	<a class="categoryLink col" href="books.html?category=Fiction">
+	<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Education")}}'>
 		<div class="col categoryList rounded-3 p-2 hover-shadow">
-			All Books
+			Education
 		</div>
 	</a>
-	<a class="categoryLink col" href="books.html?category=Fiction">
+	<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Philosophy")}}'>
 		<div class="col categoryList rounded-3 p-2 hover-shadow">
-			All Books
-		</div>
+		Philosophy
+</div>
 	</a>
 
 		</div>
@@ -214,32 +214,47 @@
 			<!-- second Row of categories -->
 		<div class="row m-3 text-center gap-4 mx-5" >
 	
-			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-left: 200px;">
-				<a  class="categoryLink" href="books.html?category=Fiction">Education</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a class="categoryLink"  href="books.html?category=Fiction">Romance</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Mystery</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow" style=" margin-right: 200px;">
-				<a  class="categoryLink" href="books.html?category=Fiction">Philosophy</a>
-			</div>
+			<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Art")}}' style="margin-left: 200px;">
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Art
+				</div>
+			</a>
+			<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Biograpghy")}}'>
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Biography
+				</div>
+			</a>
+			<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Self-Help")}}'>
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Self-Help
+				</div>
+			</a>
+			<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Science")}}' style="margin-right: 200px;">
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Science
+				</div>
+			</a>
 
 		</div>
 
 		<div class="row m-3 text-center gap-4 mx-5">
-	
-			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-left: 300px;">
-				<a  class="categoryLink" href="books.html?category=Fiction">Art</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow">
-				<a  class="categoryLink" href="books.html?category=Fiction">Fiction</a>
-			</div>
-			<div class="col categoryList rounded-3 p-2 hover-shadow" style="margin-right: 300px;">
-				<a  class="categoryLink" href="books.html?category=Fiction">Fiction</a>
-			</div>
+				<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "History")}}' style="margin-left: 300px;">
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Biography
+				</div>
+			</a>
+			<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Buisness")}}'>
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Self-Help
+				</div>
+			</a>
+			<a class="categoryLink col" href='{{url_for("routes.categoryBooks", category = "Humour")}}' style="margin-right: 300px;">
+				<div class="col categoryList rounded-3 p-2 hover-shadow">
+					Science
+				</div>
+			</a>
+
+
 
 		</div>
 
@@ -279,7 +294,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rent', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', Data=data) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
@@ -305,7 +320,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rent', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', Data=data) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
@@ -330,7 +345,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rent', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', Data=data) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
@@ -355,7 +370,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rent', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', Data=data) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
@@ -732,7 +747,7 @@
               <h5 class="card-title">${book.title}</h5>
               <p class="card-text"><strong>Category:</strong> ${book.category}</p>
               <p class="card-text"><strong>Author:</strong> ${book.author}</p>
-<a href='{{url_for("routes.rent", Data = data)}}' class="btn btn-primary">Rent</a>
+<a href='{{url_for("routes.rentBook", Data = data)}}' class="btn btn-primary">Rent</a>
             </div>
           </div>
         `;

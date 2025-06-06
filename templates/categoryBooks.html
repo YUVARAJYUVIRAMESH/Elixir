@@ -24,7 +24,12 @@
 	<div class="container">
 			<br><br>
 			<div class="row">
+		  {% if allCategory %}
+		<h1 class="text-center styled-heading">Category: <i style="color: blue;">All Books</i></h1>
+		  {% else %}
 		<h1 class="text-center styled-heading">Category: <i style="color: blue;">{{data[0].category}}</i></h1>
+		  {% endif %}
+
 			</div>
 		<div class="row">
 
@@ -38,7 +43,7 @@
 					<div class="card-body">
 	<h5 class="card-title fw-bold text-dark">{{book.name}}</h5>
 	<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book.category}}</p>
-						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+	  <p class="card-text text-muted mb-1"><strong>Author:</strong> {{book.author}}</p>
 						<p class="card-text mb-2">
 							<strong>Rating:</strong>
 							<span style="color: #ffc107;">
@@ -49,7 +54,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href='{{ url_for("routes.rent", Data=data) }}'
+						<a href='{{ url_for("routes.rentBook", Data=data) }}'
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>

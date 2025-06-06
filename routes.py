@@ -209,12 +209,22 @@ def callRoutes(app, login_manager):
     def categoryBooks():
         Category = request.args.get("category")
 
+        if Category == "AllBooks":
+            AllBooks = Books.query.all()
+            return render_template("categoryBooks.html", data = AllBooks, allCategory = True)
+
         booksInCategory = Books.query.filter_by(category = Category).all()
 
         if (booksInCategory):
             return render_template("categoryBooks.html", data = booksInCategory)
         else:
             return "NO BOOKS"
+
+
+    @routes.route("/rentBook")
+    @login_required
+    def rentBook():
+        return render_template("test2.html")
 
     return routes
     
