@@ -25,9 +25,20 @@ def callRoutes(app, login_manager):
 
     @routes.route('/')
     def home():
+        book1 = Books.query.filter_by(name = "Atomic Habits").first()
+        book2 = Books.query.filter_by(name = "The Power of Now").first()
+        book3 = Books.query.filter_by(name = "The 7 Habits of Highly Effective People").first()
+        book4 = Books.query.filter_by(name = "Can't Hurt Me").first()
+        book5 = Books.query.filter_by(name = "The Immortal Life of Henrietta Lacks").first()
+        book6 = Books.query.filter_by(name = "Born a Crime").first()
+        book7 = Books.query.filter_by(name = "Educated").first()
+        book8 = Books.query.filter_by(name = "Sapiens: A Brief History of Humankind").first()
+        book9 = Books.query.filter_by(name = "A Brief History of Time").first()
+        book10 = Books.query.filter_by(name = "Cosmos").first()
+        book11 = Books.query.filter_by(name = "The Selfish Gene").first()
+        book12 = Books.query.filter_by(name = "A Short History of Nearly Everything").first()
 
-        print(url_for('routes.admin'))
-        return render_template("home.html")
+        return render_template("home.html", book1 = book1, book2 = book2, book3 = book3, book4 = book4, book5 = book5, book6 = book6, book7 = book7, book8 = book8, book9 = book9, book10 = book10, book11 = book11, book12 = book12)
 
 
     @routes.route("/adminn")

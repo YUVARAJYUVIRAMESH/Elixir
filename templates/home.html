@@ -86,6 +86,11 @@
     .carousel-control-next-icon {
       background-size: 60% 60%;
     }
+.details{
+background-color: 
+}
+
+
 {% endblock style %}
 
 {% block header %}
@@ -153,21 +158,19 @@
   </div>
 </div>
 
-	<div class="details custom-font row">
+	<div class="details custom-font row" style="background-color: white;">
 		<!-- Text -->
-		<div class="col p-5" style="margin-left: 10%; margin-top: 2%;">
-			<div class="text-uppercase small text-muted mb-2">COCO &gt; Soaps</div>
+		<div class="col p-5" style="margin-left: 10%; margin-top: 2%; ">
+			<div class="text-uppercase small text-muted mb-2">elixir &gt; books</div>
 			<hr style="background-color: black; height:3px; margin-right: 50px;">
 			<h1 class="fw-bold display-7">Nature’s Nourishing Elixir</h1>
-			<p>Extracted without the use of harsh additives or preservatives, this oil retains its natural goodness,
-				making it gentle and safe for daily use. Rich in healthy fats and antioxidants, it deeply hydrates,
-				soothes irritation, and promotes a healthy glow. </p>
-
+			<p style="font-size: 20px;">Books are powerful tools that enhance our lives in multiple ways. They improve brain connectivity, expand vocabulary, and foster empathy by allowing us to experience diverse perspectives. Reading also reduces stress, aids in sleep readiness, and contributes to mental well-being. Incorporating reading into daily routines can support cognitive longevity and overall health.&#x20;
+</p>
 
 		</div>
 		<!-- Image -->
 		<div class="col p-4">
-			<img src="../static/oilBottle.png" style="height: 300px; width: 250px; margin-top: 9%; border-radius: 15px;"
+			<img src="../static/image/homeBook.webp" style="height: 300px; width: 250px; margin-top: 9%; border-radius: 15px;"
 				alt="">
 		</div>
 	</div>
@@ -262,28 +265,132 @@
 <br><br>
 
 	<div class="container text-center">
-		<h1>📚 Browse Books</h1>
+		<h1>📚 Trending Books</h1>
 		<div id="categoryTitle"></div>
 
-		<!-- Search Bar -->
-		<div class="search-bar">
-			<input type="text" id="searchInput" class="form-control" placeholder="Search by title..." />
-		</div>
+		<!-- <!-- Search Bar -->
+		<!-- <div class="search-bar"> -->
+		<!-- 	<input type="text" id="searchInput" class="form-control" placeholder="Search by title..." /> -->
+		<!-- </div> -->
 
 		<!-- <div class="row" id="bookList"> -->
 		<!-- 	<!-- Books will be rendered here dynamically --> 
 		<!-- </div> -->
+<br><br>
+		<div class="row">
+	<h3 class="text-start ms-5 mb-3">Self-Help</h3>	
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+<img src='{{book1.image_url}}' class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+<h5 class="card-title fw-bold text-dark">{{book1.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book1.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book1.author}}</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rentBook', id = book1.id) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src='../static/image/photo-1.jpg' class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+<h5 class="card-title fw-bold text-dark">{{book2.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book2.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book2.author}}</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rentBook', id = book2.id) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+					<img src= '../static/image/photo-2.jpg' class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+<h5 class="card-title fw-bold text-dark">{{book3.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book3.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book3.author}}</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rentBook', id = book3.id) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+		<img src= '../static/image/photo-3.jpg' class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+<h5 class="card-title fw-bold text-dark">{{book4.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book4.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book4.author}}</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rentBook', id = book4.id) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
 
 		<div class="row">
+	<h3 class="text-start ms-5 mb-3">Non-Fiction</h3>	
 			<div class="col">
 				<div class="card book-card shadow rounded-4 border-0 text-center"
 					style="max-width: 18rem; background-color: #fff;">
-					<img src="../static/image/photo-7.avif" class="card-img-top rounded-top-4"
+<img src='{{book5.image_url}}' class="card-img-top rounded-top-4"
 						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
 					<div class="card-body">
-						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
-						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
-						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+<h5 class="card-title fw-bold text-dark">{{book5.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book5.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book5.author}}</p>
 						<p class="card-text mb-2">
 							<strong>Rating:</strong>
 							<span style="color: #ffc107;">
@@ -294,33 +401,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rentBook', Data=data) }}"
-							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col">
-				<div class="card book-card shadow rounded-4 border-0 text-center"
-					style="max-width: 18rem; background-color: #fff;">
-					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
-						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
-					<div class="card-body">
-						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
-						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
-						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
-						<p class="card-text mb-2">
-							<strong>Rating:</strong>
-							<span style="color: #ffc107;">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star-half-alt"></i>
-							</span>
-						</p>
-						<a href="{{ url_for('routes.rentBook', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', id = book1.id) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
@@ -329,12 +410,12 @@
 			<div class="col">
 				<div class="card book-card shadow rounded-4 border-0 text-center"
 					style="max-width: 18rem; background-color: #fff;">
-					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+			<img src='../static/image/photo-5.jpeg' class="card-img-top rounded-top-4"
 						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
 					<div class="card-body">
-						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
-						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
-						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+<h5 class="card-title fw-bold text-dark">{{book6.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book6.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book6.author}}</p>
 						<p class="card-text mb-2">
 							<strong>Rating:</strong>
 							<span style="color: #ffc107;">
@@ -345,7 +426,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rentBook', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', id = book2.id) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
@@ -354,12 +435,12 @@
 			<div class="col">
 				<div class="card book-card shadow rounded-4 border-0 text-center"
 					style="max-width: 18rem; background-color: #fff;">
-					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+			<img src= '{{book7.image_url}}' class="card-img-top rounded-top-4"
 						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
 					<div class="card-body">
-						<h5 class="card-title fw-bold text-dark">The Alchemist</h5>
-						<p class="card-text text-muted mb-1"><strong>Category:</strong> Fiction</p>
-						<p class="card-text text-muted mb-1"><strong>Author:</strong> James Clear</p>
+<h5 class="card-title fw-bold text-dark">{{book7.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book7.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book7.author}}</p>
 						<p class="card-text mb-2">
 							<strong>Rating:</strong>
 							<span style="color: #ffc107;">
@@ -370,14 +451,38 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href="{{ url_for('routes.rentBook', Data=data) }}"
+						<a href="{{ url_for('routes.rentBook', id = book3.id) }}"
+							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card book-card shadow rounded-4 border-0 text-center"
+					style="max-width: 18rem; background-color: #fff;">
+			<img src= '{{book8.image_url}}' class="card-img-top rounded-top-4"
+						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
+					<div class="card-body">
+<h5 class="card-title fw-bold text-dark">{{book8.name}}</h5>
+<p class="card-text text-muted mb-1"><strong>Category:</strong> {{book8.category}}</p>
+<p class="card-text text-muted mb-1"><strong>Author:</strong> {{book8.author}}</p>
+						<p class="card-text mb-2">
+							<strong>Rating:</strong>
+							<span style="color: #ffc107;">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+							</span>
+						</p>
+						<a href="{{ url_for('routes.rentBook', id = book4.id) }}"
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>
 			</div>
 
 		</div>
-	</div>
 
 	<script>
 
