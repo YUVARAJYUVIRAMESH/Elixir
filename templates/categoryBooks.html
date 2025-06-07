@@ -38,7 +38,7 @@
 			<div class="col-3 mt-5">
 				<div class="card book-card shadow rounded-4 border-0 text-center"
 					style="max-width: 18rem; background-color: #fff;">
-					<img src="../static/image/20250522_215013.jpg" class="card-img-top rounded-top-4"
+	  <img src='{{book.image_url}}' class="card-img-top rounded-top-4"
 						style="max-height: 180px; object-fit: cover;" alt="The Alchemist Cover">
 					<div class="card-body">
 	<h5 class="card-title fw-bold text-dark">{{book.name}}</h5>
@@ -54,7 +54,7 @@
 								<i class="fas fa-star-half-alt"></i>
 							</span>
 						</p>
-						<a href='{{ url_for("routes.rentBook", Data=data) }}'
+						<a href='{{ url_for("routes.rentBook", id =book.id) }}'
 							class="btn btn-outline-primary rounded-pill px-4">Rent</a>
 					</div>
 				</div>

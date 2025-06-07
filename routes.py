@@ -31,6 +31,8 @@ def callRoutes(app, login_manager):
 
 
     @routes.route("/adminn")
+    @routes.route("/admin")
+    @routes.route("/ad")
     def admin():
         dab = request.args.get("db")
         if dab:
@@ -169,6 +171,7 @@ def callRoutes(app, login_manager):
             user = Users(name, email, password)
             db.session.add(user)
             db.session.commit()
+            return redirect(url_for("routes.home"))
             
         return render_template("register.html")
 
@@ -180,7 +183,7 @@ def callRoutes(app, login_manager):
     def logout():
         logout_user()
 
-        return redirect(url_for("routes.login"))
+        return redirect(url_for("routes.home"))
 
     @routes.route("/api/searchBooks")
     def api_SearchBooks():
@@ -224,7 +227,9 @@ def callRoutes(app, login_manager):
     @routes.route("/rentBook")
     @login_required
     def rentBook():
-        return render_template("test2.html")
+        id = request.args.get("id")
+        Data = Books.query.filter_by(id = id).first()
+        return render_template("rent.html", book = Data)
 
     return routes
     

@@ -1,91 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Caught Up: Into Darkness Trilogy</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .book-cover {
-      max-width: 100%;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    }
-    .price-box {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #d32f2f;
-    }
-    .old-price {
-      text-decoration: line-through;
-      color: gray;
-      font-size: 0.9rem;
-      margin-left: 0.5rem;
-    }
-    .add-to-cart {
-      background-color: #d32f2f;
-      border: none;
-    }
-    .breadcrumb a {
-      color: #c0392b;
-      text-decoration: none;
-    }
-    .breadcrumb .active {
-      color: black;
-    }
-  </style>
-</head>
-<body class="bg-light p-4">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Book Details - Aurora Edition</title>
+		
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- New CSS for the "Aurora Borealis" Theme -->
+		<style>
+			/* --- Theme Variables --- */
+			:root {
+				--glow-color-1: #00ffc3;
+				--glow-color-2: #8a2be2;
+				--glow-color-3: #5073e6;
+				--text-light: #f0f8ff;
+				--text-muted: rgba(240, 248, 255, 0.7);
+				--glass-bg: rgba(12, 12, 29, 0.55);
+				--glass-border: rgba(255, 255, 255, 0.2);
+				--transition-speed: 0.4s;
+			}
 
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Books</a></li>
-      <li class="breadcrumb-item"><a href="#">Fiction</a></li>
-      <li class="breadcrumb-item"><a href="#">Humorous</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Black Humor</li>
-    </ol>
-  </nav>
+			/* --- Animated Aurora Background --- */
+			body {
+				font-family: 'Segoe UI', 'Poppins', sans-serif;
+				background: #0c0c1d; /* Fallback color */
+				background: linear-gradient(135deg, #020024 0%, var(--glow-color-2) 35%, var(--glow-color-1) 100%);
+				background-size: 400% 400%;
+				animation: animated-aurora 15s ease infinite;
+				overflow-x: hidden;
+			}
+			@keyframes animated-aurora {
+				0% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+				100% { background-position: 0% 50%; }
+			}
 
-  <div class="container bg-white p-4 rounded shadow-sm">
-    <div class="row">
-      <div class="col-md-3">
-        <img src="https://covers.openlibrary.org/b/id/12837828-L.jpg" alt="Caught Up cover" class="book-cover">
-      </div>
-      <div class="col-md-9">
-        <h2><strong>Caught Up: Into Darkness Trilogy</strong></h2>
-        <p class="text-danger">by <strong>Navessa Allen</strong></p>
-        <a href="#">Write The First Customer Review</a>
-        <p class="mt-3">
-          Book Two in the #1 New York Times and instant USA TODAY bestselling trilogy! From the viral TikTok author of the stalker romcom, <em>Lights Out</em>, comes Navessa Allen's second book in the bestselling <strong>The Into Darkness Trilogy</strong>, upping the ante with voyeurism and play club kink...
-        </p>
+			/* --- Entry Animation Setup --- */
+			.content-loading .col-md-3,
+			.content-loading .col-md-9 {
+				opacity: 0;
+				transform: translateY(30px);
+			}
 
-        <div class="btn-group mt-3" role="group">
-          <button type="button" class="btn btn-outline-dark">All from $14.61</button>
-          <button type="button" class="btn btn-outline-dark">New Books</button>
-          <button type="button" class="btn btn-outline-dark">Used Books</button>
-          <button type="button" class="btn btn-outline-dark">Rare Books</button>
-        </div>
+			/* --- Main "Glassmorphism" Container --- */
+			.container.mt-5 {
+				background: var(--glass-bg);
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				border: 1px solid var(--glass-border);
+				border-radius: 20px;
+				padding: 3rem;
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+			}
 
-        <hr>
+			/* --- Left Panel: Glowing Book & Animated Buttons --- */
+			.col-md-3, .col-md-9 {
+				transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+			}
+			.content-loading .col-md-9 { transition-delay: 0.1s; }
 
-        <h5>Trade paperback, <span class="text-success">New</span></h5>
-        <p><strong>2025, Zando - Slowburn</strong><br>
-          ISBN-13: <a href="#">9781638932253</a></p>
+			.col-md-3 img.img-fluid {
+				border-radius: 8px;
+				transition: all var(--transition-speed) ease;
+				box-shadow: 0 0 10px rgba(0,0,0,0.5);
+			}
+			.col-md-3 img.img-fluid:hover {
+				transform: scale(1.05);
+				animation: book-glow 2s ease-in-out infinite;
+			}
+			@keyframes book-glow {
+				0% { box-shadow: 0 0 15px var(--glow-color-1), 0 0 30px var(--glow-color-1); }
+				50% { box-shadow: 0 0 25px var(--glow-color-3), 0 0 50px var(--glow-color-3); }
+				100% { box-shadow: 0 0 15px var(--glow-color-1), 0 0 30px var(--glow-color-1); }
+			}
+			
+			/* --- Animated Gradient Border Button --- */
+			.btn-aurora {
+				font-weight: 600;
+				padding: 10px 24px;
+				background: transparent;
+				color: var(--text-light);
+				border: 2px solid transparent;
+				border-radius: 50px;
+				position: relative;
+				transition: all var(--transition-speed) ease;
+				z-index: 1;
+			}
+			.btn-aurora::before {
+				content: '';
+				position: absolute;
+				top: -2px; left: -2px;
+				width: calc(100% + 4px);
+				height: calc(100% + 4px);
+				background: linear-gradient(90deg, var(--glow-color-1), var(--glow-color-2), var(--glow-color-3), var(--glow-color-1));
+				background-size: 300% 100%;
+				border-radius: 50px;
+				animation: animated-border 4s linear infinite;
+				z-index: -1;
+			}
+			@keyframes animated-border {
+				from { background-position: 0% 0; }
+				to { background-position: 300% 0; }
+			}
+			.btn-aurora:hover {
+				transform: translateY(-3px);
+				color: #0c0c1d;
+				background: var(--glow-color-1);
+				box-shadow: 0 10px 20px rgba(0, 255, 195, 0.2);
+			}
 
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <p><strong>Seller:</strong> Just one more Chapter<br>
-              <span class="text-warning">★★★☆☆</span> AVERAGE<br>
-              Miramar, FL, USA
-            </p>
-          </div>
-          <div class="text-end">
-            <div class="price-box">$14.61 <span class="old-price">$19.00</span></div>
-            <button class="btn btn-danger mt-2 add-to-cart">Add to Cart</button>
-          </div>
-        </div>
+			.dropdown .btn {
+				background: var(--glass-bg);
+				border: 1px solid var(--glass-border);
+				color: var(--text-light);
+			}
+			.dropdown-menu {
+				background: var(--glass-bg);
+				backdrop-filter: blur(10px);
+				border: 1px solid var(--glass-border);
+			}
+			.dropdown-item { color: var(--text-light); }
+			.dropdown-item:hover { color: #0c0c1d; background: var(--glow-color-1); }
 
-      </div>
-    </div>
-  </div>
+			.col-md-3 .small, .col-md-3 div { color: var(--text-muted); }
 
-</body>
+			/* --- Right Panel: Glowing Text & Animated Stat Cards --- */
+			.col-md-9 h3 {
+				font-size: 3rem;
+				font-weight: 700;
+				color: var(--text-light);
+				text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px var(--glow-color-3);
+			}
+			.col-md-9 p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; }
+			.col-md-9 p a {
+				color: var(--glow-color-1);
+				font-weight: 600;
+				text-decoration: none;
+				transition: all var(--transition-speed);
+			}
+			.col-md-9 p a:hover { color: #fff; text-shadow: 0 0 10px var(--glow-color-1); }
+			
+			/* --- Animated Stat Cards --- */
+			.row.text-center.mb-3 { gap: 1rem; margin-top: 2rem; }
+			.col.border.p-2 {
+				flex: 1;
+				background: var(--glass-bg);
+				border: 1px solid var(--glass-border) !important;
+				border-radius: 12px;
+				padding: 1.25rem 1rem !important;
+				transition: all var(--transition-speed) ease;
+				position: relative;
+				overflow: hidden;
+				color: var(--text-light);
+			}
+			.col.border.p-2::before {
+				content: '';
+				position: absolute;
+				top: -50%; left: -50%;
+				width: 200%; height: 200%;
+				background: conic-gradient(transparent, var(--glow-color-1), transparent 30%);
+				animation: rotate 4s linear infinite;
+				opacity: 0;
+				transition: opacity var(--transition-speed);
+			}
+			.col.border.p-2:hover::before { opacity: 1; }
+			.col.border.p-2 > * { position: relative; z-index: 1; }
+			.col.border.p-2 > strong { color: var(--text-muted); }
+			@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+			/* --- Themed Modal --- */
+			.modal-content {
+				background: var(--glass-bg);
+				backdrop-filter: blur(20px);
+				border: 1px solid var(--glass-border);
+				border-radius: 12px;
+				color: var(--text-light);
+			}
+			.modal-header { border-bottom: 1px solid var(--glass-border); }
+			.modal-footer { border-top: 1px solid var(--glass-border); }
+			.btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+		</style>
+	</head>
+	<body>
+	
+	<div class="container mt-5">
+		<div class="row">
+			<!-- Left Panel -->
+			<div class="col-md-3 text-center">
+					<img src='{{book.image_url}}' class="img-fluid mb-3" alt="Book Cover"> 
+				<br><br>
+				<!-- Replaced btn-outline-primary with the new animated class -->
+				<a href="{{ url_for('routes.rent', Data=data) }}" data-bs-toggle="modal" data-bs-target="#confirmModal" class="btn btn-aurora">Rent</a>
+				<br>
+				<div class="dropdown mb-3">
+					<br>
+					<button class="btn dropdown-toggle w-100" data-bs-toggle="dropdown">Want to Read</button>
+					<ul class="dropdown-menu w-100">
+						<li><a class="dropdown-item" href="#">Currently Reading</a></li>
+						<li><a class="dropdown-item" href="#">Have Read</a></li>
+					</ul>
+				</div>
+				<div>
+					⭐⭐⭐⭐☆  
+					<p class="small text-muted">(285 ratings)</p>
+				</div>
+			</div>
+
+			<!-- Right Panel -->
+			<div class="col-md-9">
+					<h3>{{book.name}}</h3>
+					<p> <a href="#">{{book.author}}</a></p>
+				<p>
+					⭐ 4.0 (285 ratings) · 5,087 Want to read · 477 Currently reading · 335 Have read
+				</p>
+				<p>
+						{{book.description}}
+					<a href="#">Read more</a>
+				</p>
+				<div class="row text-center mb-3">
+					<div class="col border p-2"><strong>Publish Date</strong><br>2012</div>
+					<div class="col border p-2"><strong>Publisher</strong><br><a href="#">Vintage Books</a></div>
+					<div class="col border p-2"><strong>Language</strong><br>English</div>
+				</div>
+					<p><strong>Category:</strong> {{book.category}}</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="confirmModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Confirm Rental</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="modal-body">
+				Do you confirm you want to rent this book?
+				<br><br>
+				<a href="libraryRules.html">Check here to see the rental rules.</a>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<!-- Themed the primary button in the modal -->
+				<a href="#" class="btn btn-aurora" style="text-decoration: none;">Confirm</a>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap JS Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- New JavaScript for Entry Animation -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const container = document.querySelector('.container.mt-5');
+			if (container) {
+				container.classList.add('content-loading');
+				setTimeout(() => {
+					container.classList.remove('content-loading');
+				}, 50);
+			}
+		});
+	</script>
+	</body>
 </html>
